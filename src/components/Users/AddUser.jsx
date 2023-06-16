@@ -11,6 +11,7 @@ const AddUser = () => {
     return (
         <Card className={classes.input}>
             <form onSubmit={addUserHandler}>
+
                 <label htmlFor="username">Username</label>
                 <input id="username" type="text" />
 
@@ -18,8 +19,8 @@ const AddUser = () => {
                 <input id="userage" type="number" />
 
                 <Button type="submit">Add User</Button>
-
-                <button type="reset">Reset</button>
+                <br /> <br />
+                <Button type="reset">Reset</Button>
             </form>
         </Card>
     );
