@@ -1,23 +1,23 @@
 import React from "react";
-import Card from "./Card";
-import Button from "./Button";
-import calsses from "./ErrorModal.module.css";
+import ReactDOM from "react-dom";
+import Backdrop from "./Backdrop";
+import ModalOverlay from "./ModalOverlay";
 
 const ErrorModal = (props) => {
     return (
         <React.Fragment>
-            <div className={calsses.backdrop} onClick={props.onConfirm}/>
-            <Card className={calsses.modal}>
-                <header className={calsses.header}>
-                    <h1>{props.title}</h1>
-                </header>
-                <div className={calsses.content}>
-                    <p>{props.message}</p>
-                </div>
-                <footer className={calsses.actions}>
-                    <Button onClick={props.onConfirm} >okay</Button>
-                </footer>
-            </Card>
+            {ReactDOM.createPortal(
+                <Backdrop onConfirm={props.onConfirm} />,
+                document.getElementById("backdrop-root")
+            )}
+            {ReactDOM.createPortal(
+                <ModalOverlay
+                    title={props.title}
+                    message={props.message}
+                    onConfirm={props.onConfirm}
+                />,
+                document.getElementById("overlay-root")
+            )}
         </React.Fragment>
     );
 };
